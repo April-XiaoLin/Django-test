@@ -33,3 +33,67 @@ def msgproc(request):
                     if cnf>=10:
                         break
     return render(request,'MsgSingleWeb.html',{'data':datalist})
+
+
+# 20200817练习
+from django.http import HttpResponse
+
+def index01(request):
+    return HttpResponse("OK")
+
+
+def getpath(request,a):
+    # keyword01=request.GET.get(a)
+    # keyword02=request.GET.get('kw02')
+    print(a)
+    return HttpResponse(a)
+
+def getkeyword(request):
+    kw1=request.GET.get('keyword1')
+    kw2=request.GET.get('keyword2')
+    print(kw1,kw2)
+    kw=kw1+kw2
+    return HttpResponse(kw)
+
+def getkeywords(request):
+    kw1=request.GET.getlist('keyword1')
+    kw2=request.GET.get('keyword2')
+    print(kw1,kw2)
+    # kw=kw1+kw2
+    # 此处为啥只能返回一个字符串参数？能不能同时返回多个字符串参数？
+    return HttpResponse(kw2)
+
+def login_json(request):
+    import json
+    body=request.body
+    body_str=body.decode()
+    json.loads(body_str)
+    print(body_str)
+    body_json=json.dumps(body_str)
+    print(body_json)
+#    网页返回值为："{\"username\":\"xiaoxiao\",\n\"user_id\":123}"是正常的吗？
+    return HttpResponse(body_json)
+
+def jsonresponse(request):
+    import json
+    userinfo={'user':'xiaoxiao','user_id':'123'}
+    user=json.dumps(userinfo)
+    return HttpResponse(user)
+
+
+
+
+from django.http import JsonResponse
+def jsonresponse01(request):
+    userinfo = {'user': 'xiaoxiao', 'user_id': '123'}
+    return JsonResponse(userinfo)
+
+# 重定向redirect
+from django.shortcuts import redirect
+def to_index(request):
+    return redirect('http://baidu.com')
+    # return redirect(index)
+
+
+
+
