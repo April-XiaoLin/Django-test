@@ -95,5 +95,14 @@ def to_index(request):
     # return redirect(index)
 
 
+def baidu_tieba(request,tieba_id):
+    return HttpResponse(tieba_id)
+
+def tele(request,tel,q):
+    return HttpResponse(tel)
+
+
+
+
 
 
