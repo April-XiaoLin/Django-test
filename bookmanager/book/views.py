@@ -101,6 +101,30 @@ def baidu_tieba(request,tieba_id):
 def tele(request,tel,q):
     return HttpResponse(tel)
 
+def tieba_cookie(request):
+    response = HttpResponse('set_cookie')
+    username=request.GET.get('username')
+    password=request.GET.get('password')
+    user_id=request.GET.get('user_id')
+
+    response.set_cookie(key='username',value=username)
+    response.set_cookie(key='password',value=password,max_age=0)
+    response.set_cookie(key='user_id',value=user_id,max_age=60*60*24)
+
+    return response
+
+def set_cookie(request):
+    request.session['user_id']='999'
+
+    return HttpResponse('set_session')
+
+def get_cookie(request):
+    aaa=request.session['user_id']
+
+    return HttpResponse('get_session:'+aaa)
+
+
+
 
 
 

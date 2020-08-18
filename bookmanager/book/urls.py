@@ -17,6 +17,9 @@ urlpatterns = [
     path('jsonresponse01/',jsonresponse01),
     path('to_index/',to_index),
     path('p/<int:tieba_id>/',views.baidu_tieba),
-    path('<mobile:tel>/<q>/',views.tele)
+    path('<mobile:tel>/<q>/',views.tele),
+    path('cookie/',views.tieba_cookie),
+    path('set_session/',views.set_cookie),
+    path('get_session/',views.get_cookie)
 
 ]
