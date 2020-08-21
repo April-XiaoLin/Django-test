@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import response
 from django.views.generic import View
+# 导入中间件父类
+from django.utils.deprecation import MiddlewareMixin
 
 # Create your views here.
 from django.http import HttpResponse
@@ -39,6 +41,18 @@ class RegisterView(View):
         return HttpResponse('get')
     def post(self,request):
         return HttpResponse('post')
+
+class TestMiddleware1(MiddlewareMixin):
+    def process_request(self,request):
+        # 请求被处理之前执行
+        print('process_request1 被调用')
+    #     处理视图之前被执行
+    def process_view(self,request,view_func,view_args,view_kwargs):
+        print('process_view1被调用')
+    def process_response(self,request,response):
+#在响应反馈到浏览器之前执行
+        print('process_response1被调用')
+        return response
 
 
 

@@ -48,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#     把自定义的中间件进行注册
+    'book.views.TestMiddleware1'
 ]
 
 ROOT_URLCONF = 'bookmanage01.urls'
