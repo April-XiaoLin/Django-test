@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import response
 from django.views.generic import View
+from django.template import Template, Context
+
 # 导入中间件父类
 from django.utils.deprecation import MiddlewareMixin
 
@@ -46,7 +48,7 @@ class TestMiddleware1(MiddlewareMixin):
     def process_request(self,request):
         # 请求被处理之前执行
         print('process_request1 被调用')
-    #     处理视图之前被执行
+    #     处理视图之前被执行emplat
     def process_view(self,request,view_func,view_args,view_kwargs):
         print('process_view1被调用')
     def process_response(self,request,response):
@@ -54,6 +56,13 @@ class TestMiddleware1(MiddlewareMixin):
         print('process_response1被调用')
         return response
 
+
+def vue_template(request):
+    # template='vue.html'
+    # context = Context({"name": "实验pResponse(template.render(c平台"})
+    return render(request,'vue.html',{"name": "实验pResponse(template.render(c平台"})
+
+    # return HttpResponse(template.render(context))
 
 
 
